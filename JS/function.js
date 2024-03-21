@@ -10,6 +10,11 @@ const addRow = () => {
     input.value = ''
 }
 
+const deleteRow = (todo) => {
+    const index = todos.indexOf(todo)
+    todos.splice(index, 1)
+    list.deleteRow(index)
+}
 
 const addTableRow = (text) => {
     const row = list.insertRow()
@@ -17,7 +22,7 @@ const addTableRow = (text) => {
     const col2 = row.insertCell(1)
 
     col1.innerHTML = text
-    col2.innerHTML = '<a href="#" onClick="deleteRow(\'' + newTodo + '\')">X</a>'
+    col2.innerHTML = '<a href="#" onClick="deleteRow(\'' + text + '\')">X</a>'
 }
 
 input.addEventListener('keypress', (event) => {
@@ -25,12 +30,6 @@ input.addEventListener('keypress', (event) => {
         addRow()
     }
 })
-
-const deleteRow = (todo) => {
-    const index = todos.indexOf(todo)
-    todos.splice(index,1)
-    list.deleteRow(index)
-}
 
 sort.addEventListener('click', () => {
     todos.sort()
